@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+    1. Hello world
+    <br>
+        {{message}}
+    </div>
+    <hr>
+    <div id="app2">
+    2. Vue Bind 
+    <!-- Membuat html atribut dinamis -->
+    <br>
+        <span v-bind:title="message">
+            v-bind:title
+        </span>
+    </div>
+    <hr>
+    <div id="app3">
+    3. V-if
+    <br>
+    <span v-if="kondisi">
+        v-if, variable kondisi bernilai benar
+    </span>
+    </div>
+    <hr>
+    <div id="app4">
+    4. V-for
+    <div v-for ='buah in buahs'>
+        {{buah.text}}
+    </div>
+    </div>
+
+    <div id="app5">
+    5. V-on
+        <div>{{pesan}}</div>
+        <button v-on:click ='tampil'>
+            click me !
+        </button>
+    </div>
+
+    <div id="app6">
+        5. V-model
+        <form action="">
+            <input type="text" v-model="pesan">
+        </form>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message : 'Hello world !',
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                message : 'Hello world 2 !' + new Date().toLocaleString(),
+            }
+        })
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                kondisi : true
+            }
+        })
+
+        var app4 = new Vue({
+            el: '#app4',
+            data:{
+                buahs:[
+                    { text : 'Apple' },
+                    { text: 'Jeruk' },
+                    { text: 'Mangga'}
+                ]
+            }
+        })
+
+        var app5 = new Vue({
+            el: '#app5',
+            data:{
+                pesan : 'hello world'
+            },
+
+            methods:{
+                tampil : function(){
+                    this.pesan = this.pesan.split('').reverse().join('')
+                }
+            }
+        })
+
+        var app6 = new Vue({
+            el : '#app6',
+            data:{
+                pesan : 'hello world'
+            },
+        })
+    </script>
+</body>
+</html>
